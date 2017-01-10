@@ -9,6 +9,8 @@ import index from "./components/index.vue";
 
 import four from "./components/four.vue";
 
+import  jsapi from "./components/jsapi.vue"
+
 
 //  在最外层的app.js 文件中注册 自定义的search 组件
   import header from "./components/header.vue";
@@ -54,6 +56,10 @@ router.map({
                 "/four":{
                      name:'four',
                      component:four
+                },
+                "jsApi":{
+                      name:'jsApi',
+                      component:jsapi
                 }
           }
     }

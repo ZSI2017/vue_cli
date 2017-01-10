@@ -9,7 +9,7 @@
 
 <template>
    <my-header :msgheader.sync="mag">
-     <i> 这是通过slot的分发内容，在父组件作用域内编</i>
+     <p style="font-weight:bold;font-size:.26rem">附件快递资源</p>
    </my-header>
   <div class="am-list ">
       <a v-for="item in datasource"
@@ -43,7 +43,7 @@
         data(){
             return{
               mag:{
-                  title:"one"
+                  title:"返回"
               },
               datasource:[]
 
@@ -70,6 +70,7 @@
         },
         ready(){
            this.change(0);
+           console.log("one vue one vue");
           let router = new VueRouter();
         // setTimeout(function(){
         //       router.go({path:'/index/third'});

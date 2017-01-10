@@ -1,21 +1,19 @@
 <style>
   .outContent{
+    justify-content: center;
       align-items: center;
       width:100%;
       height:.54rem;
       background: #dbdbdb;
   }
   .inContent{
-    margin-left: .14rem;
-    border-radius: .04rem;
+       /*margin-left: .10rem;*/
+      border-radius: .04rem;
        background: #fff;
        width:3rem;
        height:.38rem;
   }
-  .myInput{
-      border:0;
-       outline: 0;
-  }
+
   .myImg{
          width:.2rem;
 
@@ -25,12 +23,16 @@
 
 <template>
   <div class="outContent am-flexbox">
-    <div class="inContent am-flexbox">
-          <img class="myImg" src="/static/images/localtion1.png" alt="">
-           <input  class="myInput" placeholder="正在定位中"  />
-    </div>
+    <div class="outContent am-flexbox">
+        <div class="inContent am-flexbox">
+              <img class="myImg" src="/static/images/localtion1.png" alt="">
+              <slot>
+              </slot>
 
-     <img  class="myImg" src="/static/images/localtion2.png" alt=""> <p> 定位 </p>
+        </div>
+
+         <img  class="myImg" src="/static/images/localtion2.png" alt=""> <p style="font-size:.14rem"> 定位 </p>
+      </div>
   </div>
 
 </template>
@@ -40,8 +42,12 @@
       export default{
            data(){
                 return{
+                    info:"zzz"
 
                 }
+           },
+           props:{
+                    address:"正在定位中..."
            },
 
            methods:{

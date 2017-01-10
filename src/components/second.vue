@@ -13,15 +13,24 @@
          font-weight: bold;
 
     }
+    .myInput{
+        border:0;
+         outline: 0;
+    }
 
 </style>
 
 
 <template>
-     <my-header :msgheader.sync="mag"></my-header>
+     <my-header :msgheader.sync="mag">
+          <p  style="font-weight:bold;font-size:.26rem">附近快递网点</p>
+     </my-header>
        <!-- 使用自定义 组件  -->
-       <location> </location>
-       <p>当前路径：{{$route.path}}</p>
+       <location>
+         <input  class="myInput"
+         v-bind:placeholder="address"  />
+       </location>
+       <!-- <p>当前路径：{{$route.path}}</p> -->
        <!-- <p>当前的路由参数： {{$route}}</p> -->
        <ul>
 
@@ -43,8 +52,9 @@
  export default {
      data(){
             return {
+              address:"正在定位中...",
               mag:{
-                  title:"second"
+                  title:"返回"
               },
                 datasource:[]
             }
@@ -55,16 +65,37 @@
        }
 
      },
- created(){
-      this.$http.get("/rest/list3")
-         .then(
-             (res) =>{
-               this.datasource=res.data.data;
-                console.log(res.data.data);
-             },(response) =>{
-                 console.log("error");
-             }
-         )
+     created(){
+          console.log("created");
+     },
+ ready(){
+     this.change(2);
+   console.log("ready");
+   var _this = this;
+
+//   Vue.nextTick(function(){
+  setTimeout(function(){
+    //  Vue.nextTick(function(){
+        console.log("sd")
+        _this.$http.get("/rest/list3")
+           .then(
+               (res) =>{
+                 Vue.nextTick(function(){
+                   _this.datasource=res.data.data;
+                   _this.address="北京苹果社区"
+                   console.log(res.data.data);
+
+                 })
+               },(response) =>{
+                   console.log("error");
+               }
+           )
+    //     })
+  },1500)
+
+
+  //  })
+
 
 //   let router = new VueRouter();
   //  setTimeout(function(){
@@ -72,11 +103,7 @@
   //        console.log("跳转、");
   //  },3000)
 
-},
-ready(){
-      this.change(2);
-      console.log(this.$route)
-}
+  }
 }
 
 </script>

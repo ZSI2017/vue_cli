@@ -4,7 +4,9 @@
 
 <template>
   <div>
-    <my-header :msgheader.sync="mag" ></my-header>
+    <my-header :msgheader.sync="mag" >
+       <p  style="font-weight:bold;font-size:.26rem">地址信息</p>
+    </my-header>
       <vue-plugin></vue-plugin>
   </div>
 </template>
@@ -17,7 +19,7 @@ export default{
     data(){
         return {
           mag:{
-              title:"列表2"
+              title:"返回"
           }
 
         }
