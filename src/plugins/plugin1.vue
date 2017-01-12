@@ -1,9 +1,9 @@
 <style lang="css" scoped>
    .iBall{
-     text-align: center;
-     line-height: .3rem;
+      text-align: center;
+      line-height: .3rem;
        color:white;
-      font-style: normal;
+       font-style: normal;
        display: block;
        width:.3rem;
        height:.3rem;
@@ -26,6 +26,7 @@
        border-left:.01rem solid #e6e6e6;
    }
    .addressee{
+     overflow: hidden;
      background:white;
      border-top:1px solid #e6e6e6;
      border-bottom:1px solid #e6e6e6 !important;
@@ -46,7 +47,8 @@
        </div>
        <div class="am-list-clear"><i class="am-icon-clear am-icon"></i></div>
        <div class="am-list-button borLeft">
-         <button type="button" style="color:blue;font-size:.2rem" disabled="disabled">地址䈬</button>
+         <button type="button" style="color:blue;font-size:.2rem"
+         v-on:click="myClick(index)">地址䈬</button>
        </div>
      </div>
    </div>
@@ -60,22 +62,47 @@
        data(){
            return{
              bgcolor:['red','green'],
-             datasource:[]
+             datasource:[
+                 {
+                     type:'寄',
+                     tel:"双井吴彦祖 12345678",
+                     detailAdd:"北京市朝阳区双井百子湾路32号苹果社区北区底商2-26号新石器科技有限公司棒棒达",
+                     bgcolor:'red'
+                 },
+                 {
+                     type:'收',
+                     tel:"双井吴彦祖 9876543",
+                     detailAdd:"北京市朝阳区双井百子湾路32号苹果社区北区底商2-26号新石器科技有限公司棒棒达",
+                     bgcolor:'green'
+                 }
+             ]
+
 
            }
        },
-       methods(){
+       methods:{
+          myClick(index){
+             var  _this = this;
+             am.selectAddress(function(data){
+                    _this.datasource[index].tel=data.fullname + data.mobilePhone;
+                    _this.datasource[index].detailAdd=data.prov+data.city+data.area
+                    alert(JSON.stringify(data));
+             })
+          }
        },
        created(){
-         this.$http.get("/rest/list4")
-           .then(
-              (res) =>{
-                   this.datasource = res.data.data;
-                   console.log(res.data.data);
-              },(response) =>{
-                    console.log("http error");
-              }
-           )
+         ant.setTitle({
+             title:"地址信息",
+         })
+        //  this.$http.get("/rest/list4")
+        //    .then(
+        //       (res) =>{
+        //            this.datasource = res.data.data;
+        //            console.log(res.data.data);
+        //       },(response) =>{
+        //             console.log("http error");
+        //       }
+        //    )
        },
        ready(){
        }

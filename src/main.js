@@ -1,4 +1,5 @@
 
+
 import first from "./components/one.vue";
 //import second from "./components/second.vue";
 import third from "./components/third.vue";
@@ -9,7 +10,7 @@ import index from "./components/index.vue";
 
 import four from "./components/four.vue";
 
-import  jsapi from "./components/jsapi.vue"
+//import  jsapi from "./components/jsapi.vue"
 
 
 //  在最外层的app.js 文件中注册 自定义的search 组件
@@ -18,7 +19,7 @@ import  jsapi from "./components/jsapi.vue"
       Vue.component('myHeader',Mycomponent);
 
 // 引入store 进行全局状态管理
-import store from "./vuex/store";
+  import store from "./vuex/store";
 
 //  在最外层注册组件
 
@@ -37,7 +38,7 @@ let App = Vue.extend({
          store:store
 });
 router.map({
-    "/index":{
+    "/":{
           name:"index",
           component:index,
           subRoutes:{
@@ -56,10 +57,6 @@ router.map({
                 "/four":{
                      name:'four',
                      component:four
-                },
-                "jsApi":{
-                      name:'jsApi',
-                      component:jsapi
                 }
           }
     }

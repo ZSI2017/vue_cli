@@ -14,6 +14,7 @@
 
     }
     .myInput{
+
         border:0;
          outline: 0;
     }
@@ -22,9 +23,9 @@
 
 
 <template>
-     <my-header :msgheader.sync="mag">
+     <!-- <my-header :msgheader.sync="mag">
           <p  style="font-weight:bold;font-size:.26rem">附近快递网点</p>
-     </my-header>
+     </my-header> -->
        <!-- 使用自定义 组件  -->
        <location>
          <input  class="myInput"
@@ -56,7 +57,8 @@
               mag:{
                   title:"返回"
               },
-                datasource:[]
+                datasource:[ ]
+
             }
      },
      vuex:{
@@ -66,6 +68,9 @@
 
      },
      created(){
+        ant.setTitle({
+            title:"附件快递资源"
+        })
           console.log("created");
      },
  ready(){
@@ -77,19 +82,49 @@
   setTimeout(function(){
     //  Vue.nextTick(function(){
         console.log("sd")
-        _this.$http.get("/rest/list3")
-           .then(
-               (res) =>{
-                 Vue.nextTick(function(){
-                   _this.datasource=res.data.data;
-                   _this.address="北京苹果社区"
-                   console.log(res.data.data);
+        ant.call("getLocation",function(result){
+            if(result.error){
+                alert(result.errorMessage);
+                return;
+            }
+            console.log(result.pois[0].address);
+              _this.address =result.pois[0].address;
+        })
 
-                 })
-               },(response) =>{
-                   console.log("error");
-               }
-           )
+
+        _this.datasource=[       {
+                    title:'-北京苹果社区店',
+                    no1:'地址：百子湾路苹果社区临街低商',
+                    no2:'营业时间：08:00-18:00',
+                    no3:'取件时间：08:00-18:00',
+                  },
+                  {
+                    title:'-北京海淀社区店',
+                    no1:'地址：百子湾路苹果社区临街低商',
+                    no2:'营业时间：08:00-18:00',
+                    no3:'取件时间：08:00-18:00',
+                  },{
+                    title:'-北京苹果社区店',
+                    no1:'地址：百子湾路苹果社区临街低商',
+                    no2:'营业时间：08:00-18:00',
+                    no3:'取件时间：08:00-18:00',
+                  }
+          ];
+
+
+        // _this.$http.get("/rest/list3")
+        //    .then(
+        //        (res) =>{
+        //          Vue.nextTick(function(){
+        //            _this.datasource=res.data.data;
+        //            _this.address="北京苹果社区"
+        //            console.log(res.data.data);
+        //
+        //          })
+        //        },(response) =>{
+        //            console.log("error");
+        //        }
+        //    )
     //     })
   },1500)
 

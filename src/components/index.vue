@@ -31,10 +31,10 @@
           data(){
               return{
                       list:[
-                        {path:"/index/",icon:"&#xe78b;",name:"列表1"},
-                        {path:'/index/four',icon:'',name:'列表2'},
-                        {path:"/index/second/默认",icon:"&#xe78b;",name:"列表3"},
-                        {path:"/index/third",icon:"&#xe78b;",name:"列表4"}
+                        {path:"/",icon:"&#xe78b;",name:"列表1"},
+                        {path:'/four',icon:'',name:'列表2'},
+                        {path:"/second/默认",icon:"&#xe78b;",name:"列表3"},
+                        {path:"/third",icon:"&#xe78b;",name:"列表4"}
                         ]
               }
           },

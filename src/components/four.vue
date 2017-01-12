@@ -4,9 +4,9 @@
 
 <template>
   <div>
-    <my-header :msgheader.sync="mag" >
+    <!-- <my-header :msgheader.sync="mag" >
        <p  style="font-weight:bold;font-size:.26rem">地址信息</p>
-    </my-header>
+    </my-header> -->
       <vue-plugin></vue-plugin>
   </div>
 </template>

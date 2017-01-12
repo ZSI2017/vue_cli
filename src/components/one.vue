@@ -6,11 +6,10 @@
    }
 </style>
 
-
 <template>
-   <my-header :msgheader.sync="mag">
+   <!-- <my-header :msgheader.sync="mag">
      <p style="font-weight:bold;font-size:.26rem">附件快递资源</p>
-   </my-header>
+   </my-header> -->
   <div class="am-list ">
       <a v-for="item in datasource"
          v-link="{name:'second', params: {name:item.title}}"
@@ -22,8 +21,8 @@
         <div class="am-list-content">
           <div class="am-list-title" style="font-size:.2rem,font-weight:bold">{{item.title}}</div>
           <div class="am-list-brief" style="font-size:.14rem;overflow:visible">{{item.subtitle}}</div>
-          <div  class="am-list-brief" style="margin-top:.03rem">
-             <p v-for="i in item.little" class="am-flexbox-item" style="display:inline-block;padding:.01rem;margin-right:.02rem;color:red;border:.01rem solid red;font-size:12px">{{i}}</p></div>
+          <div  class="am-list-brief" style="margin-top:.03rem;margin-bottom:2px">
+             <p v-for="i in item.little" class="am-flexbox-item" style="display:inline-block;padding:.01rem;margin-right:.02rem;color:red;border:1px solid red;font-size:12px">{{i}}</p></div>
         </div>
         <div class="am-list-arrow" aria-hidden="true">
           <span class="am-icon arrow horizontal"></span>
@@ -45,7 +44,27 @@
               mag:{
                   title:"返回"
               },
-              datasource:[]
+              datasource:[{
+                title:"菜鸟驿站",
+                subtitle:"官方合作门店，安全有保障",
+                little:[
+                  "安全保障","便捷代寄"
+                 ]},
+               {
+                title:"顺丰",
+                subtitle:"找就近网点快速提供服务",
+                little:[
+                 "快速上门","安全保障"]
+                },
+                {
+                  title:"闪送",
+                  subtitle:"官方合作门店，安全有保障",
+                  little:[
+                     "安全保障","便捷代寄"
+                       ]
+                 }
+               ]
+
 
             }
         },
@@ -56,15 +75,18 @@
 
         },
         created(){
-           this.$http.get("/rest/list2")
-             .then(
-                   (res) =>{
-                    this.datasource = res.data.data;
-                     console.log(res.data.data);
-                   },(response) =>{
-                        console.log("http error");
-                   }
-             )
+           ant.setTitle({
+               title:"附近快递网点"
+           })
+          //  this.$http.get("/rest/list2")
+          //    .then(
+          //          (res) =>{
+          //           this.datasource = res.data.data;
+          //            console.log(res.data.data);
+          //          },(response) =>{
+          //               console.log("http error");
+          //          }
+          //    )
 
 
         },

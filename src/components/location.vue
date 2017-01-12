@@ -7,10 +7,10 @@
       background: #dbdbdb;
   }
   .inContent{
-       /*margin-left: .10rem;*/
+      /*margin-left: .10rem;*/
       border-radius: .04rem;
        background: #fff;
-       width:3rem;
+       width:80%;
        height:.38rem;
   }
 
@@ -31,7 +31,8 @@
 
         </div>
 
-         <img  class="myImg" src="/static/images/localtion2.png" alt=""> <p style="font-size:.14rem"> 定位 </p>
+         <img  class="myImg" src="/static/images/localtion2.png" alt="">
+         <p style="font-size:.14rem" v-on:click = "change123"> 定位 </p>
       </div>
   </div>
 
@@ -43,14 +44,21 @@
            data(){
                 return{
                     info:"zzz"
-
                 }
            },
            props:{
                     address:"正在定位中..."
            },
-
            methods:{
+             change123(){
+                 ant.call("getLocation",function(result){
+                     if(result.error){
+                         alert(result.errorMessage);
+                         return;
+                     }
+                     alert(result.province+result.street);
+                 })
+             }
 
            }
 
