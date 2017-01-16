@@ -51,8 +51,7 @@
          v-on:click="myClick(index)">地址䈬</button>
        </div>
      </div>
-   </div>
-
+</div>
 </template>
 
 

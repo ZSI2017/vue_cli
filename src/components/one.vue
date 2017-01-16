@@ -28,7 +28,6 @@
           <span class="am-icon arrow horizontal"></span>
         </div>
       </a>
-
 </div>
 
 
@@ -37,8 +36,7 @@
 
 <script>
    import  {changeIndex} from "../vuex/actions";
-
-  export default{
+   export default{
         data(){
             return{
               mag:{
@@ -87,8 +85,6 @@
           //               console.log("http error");
           //          }
           //    )
-
-
         },
         ready(){
            this.change(0);

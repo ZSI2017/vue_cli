@@ -6,15 +6,25 @@ import third from "./components/third.vue";
 
 import second from "./components/second.vue";
 
-import index from "./components/index.vue";
+//import index from "./components/index.vue";
+  import bottomlist from "./components/index.vue";
+
+import index from "./components/kuaidi.vue";
+
+import address from "./components/Address.vue";
 
 import four from "./components/four.vue";
+
+import getServer from "./components/getServer.vue";
+
+import jijian from "./components/jijian.vue";
+
 
 //import  jsapi from "./components/jsapi.vue"
 
 
 //  在最外层的app.js 文件中注册 自定义的search 组件
-  import header from "./components/header.vue";
+     import header from "./components/header.vue";
       var Mycomponent = Vue.extend(header);
       Vue.component('myHeader',Mycomponent);
 
@@ -40,11 +50,11 @@ let App = Vue.extend({
 router.map({
     "/":{
           name:"index",
-          component:index,
+          component:bottomlist,
           subRoutes:{
                 "/":{
                      name:'first',
-                     component:first
+                     component:index
                 },
                 "/second/:name":{
                       name:"second",
@@ -57,6 +67,18 @@ router.map({
                 "/four":{
                      name:'four',
                      component:four
+                },
+                "/address":{
+                         name:'address',
+                         component:address
+                },
+                "/getServer":{
+                          name:"getServer",
+                          component:getServer
+                },
+                "/jijian":{
+                        name:"jijian",
+                        component:jijian
                 }
           }
     }
