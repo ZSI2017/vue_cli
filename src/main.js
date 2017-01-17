@@ -19,6 +19,11 @@ import getServer from "./components/getServer.vue";
 
 import jijian from "./components/jijian.vue";
 
+import manage from "./components/manage.vue";
+
+import result from "./components/result.vue"
+
+import lastSuccess from "./components/success.vue";
 
 //import  jsapi from "./components/jsapi.vue"
 
@@ -79,9 +84,22 @@ router.map({
                 "/jijian":{
                         name:"jijian",
                         component:jijian
+                },
+                "/manage":{
+                         name:'manage',
+                         component:manage
+                },
+                "/successLast":{
+                          name:'success',
+                          component:lastSuccess,
                 }
-          }
-    }
+  }
+},
+"/result":{
+　　　　　　 name:"result",
+            component:result
+
+}
 })
 
 router.start(App,'body');
