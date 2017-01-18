@@ -3,7 +3,6 @@
 
 </style>
 
-
 <template>
   <div>
      <div>
@@ -14,10 +13,9 @@
         <div class="am-tab am-fixed am-fixed-bottom" role="tablist">
               <a v-for="item in list"  v-bind:class="['am-tab-item', current==$index ? 'selected':'']"
               v-on:click = "changePage($index)"
-              v-link ="{path:item.path}"
-                  role="tab"
+               v-link ="{path:item.path}"
+              role="tab"
                   >{{item.name}}</a>
-
        </div>
          </footer>
   </div>

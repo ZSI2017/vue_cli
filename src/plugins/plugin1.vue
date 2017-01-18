@@ -35,23 +35,28 @@
 </style>
 
 <template>
-<div  class="addressee am-list form">
-     <div v-for="(index,item) in datasource" style="padding:.12rem 0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
-       <i   v-bind:style="{background:bgcolor[index]}" class="iBall">{{item.type}}</i>
-       <div style="min-width:0" class="am-list-label">
-        </div>
-       <div class="am-list-control">
-           <p class="nameColor" >{{item.tel}}</p>
-           <p class="moreEllipsis"> {{item.detailAdd}}</p>
-         <!-- <input type="text" placeholder="收件人姓名" value=""> -->
-       </div>
-       <div class="am-list-clear"><i class="am-icon-clear am-icon"></i></div>
-       <div class="am-list-button borLeft">
-         <button type="button" style="color:blue;font-size:.2rem"
-         v-on:click="myClick(index)">地址䈬</button>
-       </div>
-     </div>
-</div>
+  <section>
+      <div  class="addressee am-list form">
+           <div v-for="(index,item) in datasource" style="padding:.12rem 0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
+             <i   v-bind:style="{background:bgcolor[index]}" class="iBall">{{item.type}}</i>
+             <div style="min-width:0" class="am-list-label">
+              </div>
+             <div class="am-list-control">
+                 <p class="nameColor" >{{item.tel}}</p>
+                 <p class="moreEllipsis"> {{item.detailAdd}}</p>
+               <!-- <input type="text" placeholder="收件人姓名" value=""> -->
+             </div>
+             <div class="am-list-clear"><i class="am-icon-clear am-icon"></i></div>
+             <div class="am-list-button borLeft">
+               <button type="button" style="color:blue;font-size:.2rem"
+               v-on:click="myClick(index)">地址䈬</button>
+             </div>
+           </div>
+      </div>
+      <div style="margin:.3rem .15rem .6rem">
+          <button v-on:click="green" type="button" class="am-button blue ">下一步</button>
+      </div>
+</section>
 </template>
 
 
@@ -75,11 +80,15 @@
                      bgcolor:'green'
                  }
              ]
-
-
            }
        },
        methods:{
+         green(){
+           let router = new VueRouter;
+           router.go({
+                 path:'/chooseExpress'
+           })
+         },
           myClick(index){
              var  _this = this;
              am.selectAddress(function(data){
@@ -102,8 +111,6 @@
         //             console.log("http error");
         //       }
         //    )
-       },
-       ready(){
        }
   }
 </script>

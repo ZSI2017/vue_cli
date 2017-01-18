@@ -84,7 +84,7 @@
       <p>常用功能</p>
          <ul class="am-flexbox outli">
              <li v-for="(index,item) in datasource" class="flexboxli">
-                <i class="flexboxliin">
+                <i  v-link ="{path:item.path}" class="flexboxliin">
                     <img class="flexboxliinimg" v-bind:src="item.imgUrl" alt="快递">
                     <p class="flexboxliinp1">{{item.p1}}</p>
                     <p class="flexboxliinp2">{{item.p2}}</p>
@@ -104,7 +104,8 @@
                {
                    imgUrl:'/static/images/first1.png',
                    p1:'预约寄件',
-                   p2:'快递预约寄件，小哥上门收件'
+                   p2:'快递预约寄件，小哥上门收件',
+                   path:'/address'
                }, {
                     imgUrl:'/static/images/first2.png',
                     p1:'实时抢单',
@@ -120,7 +121,8 @@
                   }, {
                        imgUrl:'/static/images/first4.png',
                        p1:'附近快递资源',
-                       p2:'附近的快递网点.快递柜'
+                       p2:'附近的快递网点.快递柜',
+                       path:"/first"
                    }
             ]
 

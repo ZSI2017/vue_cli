@@ -88,6 +88,8 @@
          },
          methods:{
            green(){
+             let router = new VueRouter;
+             router.go({path:"/four"});
                alert("提交成功！");
            },
            change123(){

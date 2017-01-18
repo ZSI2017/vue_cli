@@ -25,6 +25,8 @@ import result from "./components/result.vue"
 
 import lastSuccess from "./components/success.vue";
 
+import choose from "./components/chooseExpress.vue";
+
 //import  jsapi from "./components/jsapi.vue"
 
 
@@ -53,13 +55,13 @@ let App = Vue.extend({
          store:store
 });
 router.map({
-    "/":{
-          name:"index",
-          component:bottomlist,
-          subRoutes:{
                 "/":{
                      name:'first',
                      component:index
+                },
+                "/first":{
+                     name:'fujingziyuan',
+                     component:first
                 },
                 "/second/:name":{
                       name:"second",
@@ -77,7 +79,7 @@ router.map({
                          name:'address',
                          component:address
                 },
-                "/getServer":{
+                "/getServer/:myid":{
                           name:"getServer",
                           component:getServer
                 },
@@ -92,14 +94,15 @@ router.map({
                 "/successLast":{
                           name:'success',
                           component:lastSuccess,
+                },
+                "/result/:name":{
+                　　　　　　 name:"result",
+                            component:result
+                },
+                "/chooseExpress":{
+                               name:"choose",
+                               component:choose
                 }
-  }
-},
-"/result":{
-　　　　　　 name:"result",
-            component:result
-
-}
 })
 
 router.start(App,'body');

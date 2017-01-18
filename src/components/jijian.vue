@@ -24,7 +24,7 @@
 <div style="padding:.12rem 0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
   <div class="am-list-label">寄件人</div>
   <div class="am-list-control">
-    <input type="text" placeholder="寄件人姓名"  v-model="inf.name" >
+    <input type="text" v-on:input="checkoutName" maxlength="20" placeholder="寄件人姓名"  >
   </div>
   <div class="am-list-clear"><i class="am-icon-clear am-icon"></i></div>
   <!-- <div class="am-list-button">
@@ -34,8 +34,13 @@
      <div style="padding-left:0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
        <div class="am-list-label">手机号码</div>
        <div class="am-list-control">
-         <input type="number" pattern="\d*" placeholder="11位手机号"
-            v-model="inf.mobile">
+         <input v-on:input="checkoutPhone" type="text" pattern="\d*" placeholder="11位手机号" maxlength="11"  v-model="inf.mobile">
+       </div>
+     </div>
+     <!-- 定义toast 弹出层  -->
+     <div v-if="toastShow"  class="am-toast text">
+       <div class="am-toast-text">
+           {{toastContent}}
        </div>
      </div>
      <div style="padding:.12rem 0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
@@ -48,17 +53,10 @@
          <button v-on:click = "change123"  type="button" style="color:blue">获取定位</button>
        </div>
      </div>
-<!--
-     <div style="padding-left:0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
-       <div class="am-list-label">选择地区</div>
-       <div class="am-list-control">
-         <input type="telphone" placeholder="s" value="">
-       </div>
-     </div> -->
      <div style="align-items:flex-start;padding-left:0;margin-left:.12rem; border-bottom:1px solid #e6e6e6 padding:0" class="am-list-item am-input-autoclear">
        <div class="am-list-label">详细地址</div>
        <div class="am-list-control">
-         <textarea type="telphone" placeholder="街道 楼宇 门牌信息" ></textarea>
+         <textarea type="telphone" maxlength="50"   v-on:input="checkoutAddress" placeholder="街道 楼宇 门牌信息" ></textarea>
        </div>
      </div>
    </div>
@@ -87,9 +85,7 @@
     </div>
   </div>
 </div>
-
-
-       </section>
+</section>
 
 </template>
 
@@ -98,13 +94,55 @@
 export default{
      data(){
          return {
-           show:true
+           toastShow:false,
+           toastContent:"姓名不能超过20个汉字",
+           show:true,
+           inf:{
+                mobile:''
+           }
          }
      },
      methods:{
-         change123(){
+       checkoutPhone(e){
+         let _this = this;
+        e.srcElement.value= e.srcElement.value.replace(/\D+/g,'');
+        if(e.srcElement.value.length==11){
+                     _this.toastContent="手机号码不能超过11位";
+                     _this.toastShow=true;
+                     setTimeout(function(){
+                          _this.toastShow=false;
+                     },2000);
+         };
+       },
+       checkoutName(e){
+         var _this =this;
+         // 只允许输入汉字
+          e.srcElement.value = e.srcElement.value.replace(/[^\u4E00-\u9FA5]/g,'');
+          if(e.srcElement.value.length==20){
+                   _this.toastContent="姓名不能超过20个汉字";
+                   _this.toastShow=true;
+
+               setTimeout(function(){
+                    _this.toastShow=false;
+               },2000)
+          }
+      },
+        change123(){
                alert("sdfg");
          },
+         checkoutAddress(e){
+           let _this = this;
+        e.srcElement.value =e.srcElement.value.replace(/[^\u4E00-\u9FA5]/g,'');
+
+           if(e.srcElement.value.length==50){
+                _this.toastContent="详细地址不能超出50个汉字"
+                _this.toastShow=true;
+                setTimeout(function(){
+                      _this.toastShow=false;
+                },3000);
+           }
+         },
+
          cancel(){
               this.show=false
          },
@@ -114,7 +152,8 @@ export default{
 
               })
          }
-     }
+     },
+
 }
 
 </script>

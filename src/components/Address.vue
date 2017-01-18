@@ -47,17 +47,19 @@
          <div class="am-list-control">
              <!-- <p class="nameColor" >{{item.tel}}</p> -->
              <!-- <p class="moreEllipsis"> {{item.detailAdd}}</p> -->
-           <input type="text" v-bind:placeholder="item.placetitle" value="">
+           <input type="text" v-link="{name:'getServer',params:{myid:index}}"  v-bind:placeholder="item.placetitle" value="">
          </div>
          <div class="am-list-clear"><i class="am-icon-clear am-icon"></i></div>
          <div class="am-list-button am-flexbox borLeft">
-           <button type="button" style="margin-right:.22rem;color:blue;font-size:.2rem"
-           v-on:click="myClick(index)">地址䈬</button>
+           <button type="button"
+           v-link="{name:'getServer',params:{myid:index}}"
+            style="margin-right:.22rem;color:blue;font-size:.2rem"
+           >地址䈬</button>
          </div>
        </div>
   </div>
   <div style="margin:.3rem .15rem .6rem">
-      <button v-on:click="green" type="button" class="am-button blue  ">下一步</button>
+      <button v-on:click="green" disabled="disabled" type="button" class="am-button disabled ">下一步</button>
   </div>
 </template>
 
@@ -84,7 +86,11 @@
             }
        },
        methods:{
-
+         myClick(e){
+             let router = new VueRouter();
+              router.go({name:'getServer',params:{myid:1243}});
+             console.log(e);
+         }
        },
        created(){
          ant.setTitle({

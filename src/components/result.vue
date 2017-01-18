@@ -220,8 +220,9 @@
           }
        },
        created(){
+         var _this = this;
          ant.setTitle({
-             title:"地址信息",
+             title:_this.$route.params.name,
          })
         //  this.$http.get("/rest/list4")
         //    .then(

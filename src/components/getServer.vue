@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-   
+
 </style>
 
 <template>
@@ -41,7 +41,15 @@
             }
        },
        methods:{
+
          nextRouter(){
+           let router = new VueRouter();
+           if(this.$route.params.myid==0){
+             console.log("this.$route.params.myid");
+              router.go({path:'/jijian'})
+           }else{
+               router.go({path:"/third"});
+           }
               //  这里填写路由跳转的条码
               alert("进入下一个路由！！！")
          }
@@ -51,7 +59,6 @@
          ant.setTitle({
              title:"服务授权"
          })
-
        },
        ready(){
 
