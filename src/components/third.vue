@@ -13,13 +13,16 @@
      border-bottom:1px solid #e6e6e6 !important;
      padding:0
    }
+   .my-test{
+       border:0 !important;
+   }
 
 </style>
 
  <template>
      <section>
-<div  class="addressee am-list form">
-   <div style="padding:.12rem 0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
+<div  class="am-list form">
+   <div class="am-list-item am-input-autoclear my-test">
      <div class="am-list-label">收件人</div>
      <div class="am-list-control">
        <input type="text" placeholder="收件人姓名"  v-model="inf.name" >
@@ -29,14 +32,14 @@
        <button v-on:click = "change123"  type="button" style="color:blue">通讯录</button>
      </div>
    </div>
-        <div style="padding-left:0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
+        <div  class="am-list-item am-input-autoclear">
           <div class="am-list-label">手机号码</div>
           <div class="am-list-control">
             <input type="telphone" placeholder="11位手机号"
                v-model="inf.mobile">
           </div>
         </div>
-        <div style="padding-left:0;margin-left:.12rem; border-bottom:1px solid #e6e6e6" class="am-list-item am-input-autoclear">
+        <div  class="am-list-item am-input-autoclear">
           <div class="am-list-label">选择地区</div>
           <div class="am-list-control">
             <input type="telphone" placeholder="地区信息" value="">

@@ -27,6 +27,8 @@ import lastSuccess from "./components/success.vue";
 
 import choose from "./components/chooseExpress.vue";
 
+import orderDetail from "./components/orderDetail.vue";
+
 //import  jsapi from "./components/jsapi.vue"
 
 
@@ -102,6 +104,10 @@ router.map({
                 "/chooseExpress":{
                                name:"choose",
                                component:choose
+                },
+                "/orderDetail":{
+                              name:"order",
+                              component:orderDetail
                 }
 })
 

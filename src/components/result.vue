@@ -116,36 +116,18 @@
  <div  class="am-list sicon myResultStyle">
 
    <div  class="am-list-body ">
-     <a class="am-list-item borderBottom">
+      <a class="am-list-item borderBottom" v-for="(index,items) in datasource2"
+          v-on:click=choose(index)
+      >
        <div class="am-list-thumb">
          <img src="https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png" alt="图片描述" />
        </div>
-       <div class="am-list-content"><i style="color:red">*</i>期望上门时间</div>
-       <div class="am-list-extra" style="color:black">今天10:00-12:00</div>
+       <div class="am-list-content"><i style="color:red">*</i>{{items.content}}</div>
+       <div class="am-list-extra" style="color:black">{{items.extra}}</div>
        <div class="am-list-arrow" aria-hidden="true">
          <span class="am-icon arrow horizontal"></span>
        </div>
-     </a>
-     <a class="am-list-item borderBottom">
-       <div class="am-list-thumb">
-         <img src="https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png" alt="图片描述" />
-       </div>
-       <div class="am-list-content"><i style="color:red">*</i>物品类型</div>
-       <div class="am-list-extra" style="color:black">日用品</div>
-       <div class="am-list-arrow" aria-hidden="true">
-         <span class="am-icon arrow horizontal"></span>
-       </div>
-     </a>
-     <a class="am-list-item borderBottom">
-       <div class="am-list-thumb">
-         <img src="https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png" alt="图片描述" />
-       </div>
-       <div class="am-list-content"><i style="color:red">*</i>物品重量</div>
-       <div class="am-list-extra" style="color:black">3Kg及以下</div>
-       <div class="am-list-arrow" aria-hidden="true">
-         <span class="am-icon arrow horizontal"></span>
-       </div>
-     </a>
+      </a>
      <div class="borderBottom">
        <div style="backgrond:white; padding-bottom:.14rem;" class="am-wingblank wb.18rem">
          <div class="am-flexbox myresultkuaidi"> <p>预计快递费</p>  <p style="color:red">{{tip}}</p>
@@ -192,6 +174,8 @@
        data(){
            return{
              bgcolor:['red','green'],
+             category:["日用品","文件",'数码产品','食品','衣服'],
+             weight:["3kg及以上",'4kg','5kg','6kg','7kg','8kg','9kg及以上'],
              datasource:[
                  {
                      type:'寄',
@@ -206,10 +190,49 @@
                      bgcolor:'green'
                  }
              ],
+             datasource2:[
+                 {
+                     imageUrl:"https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png",
+                     content:"期望上门时间",
+                     extra:"今天10:00-12:00"
+                 },{
+                     imageUrl:"https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png",
+                     content:"物品类型",
+                     extra:"日用品"
+                 },{
+                     imageUrl:"https://os.alipayobjects.com/rmsportal/OhSzVdRBnfwiuCK.png",
+                     content:"物品重量",
+                     extra:"3Kg及以下"
+                 },
+
+             ],
              tip:"10.00元"
            }
        },
        methods:{
+         choose(index){
+           var options=[];
+             if(index==0){
+
+
+             }else if(index==1){
+              options=this.category;
+
+             }else{
+                options=this.weight;
+             }
+             ant.call('beehiveOptionsPicker',{
+                 title:'',
+                  optionsOne:options,
+                  selectedOneIdex:2,
+             },function(result){
+                  alert(JOSN.stringify(result));
+             });
+         },
+         green(){
+            let router = new VueRouter();
+             router.go({path:"/orderDetail"});
+         },
           myClick(index){
              var  _this = this;
              am.selectAddress(function(data){

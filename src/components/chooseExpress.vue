@@ -7,19 +7,18 @@
        border-right:0;
       .chooseOutA{
         margin-left:.15rem;
-        border-bottom:.01rem solid #e5e5e5;
+        // border-bottom:.01rem solid #e5e5e5;
         .mylistItem{
           padding:.15rem;
           padding-left:0;
           .myThumb{
             margin-right:.11rem;
             #myImage{
-               display: block;
+                 display: block;
                  height:.6rem;
                  width:.6rem;
                  border-radius: .1rem
             }
-
           }
           .mycontent{
             font-size: .14rem;
@@ -76,7 +75,7 @@
        <div  class="chooseOutA"
           v-for="(index,item) in datasource"
           v-link="{name:'result', params: {name:item.title}}"
-          v-bind:style="border-bottom : {true ? 0 :'.01rem solid #e5e5e5'}"
+          v-bind:style="{borderBottom:index==total ?  '' : '.01rem solid #e5e5e5'}"
        >
           <a class="am-list-item mylistItem" >
             <div class="am-list-thumb myThumb">
@@ -114,7 +113,7 @@
         data(){
             return{
               notice:"由于双十一期间快递资源紧张，故部分快递无法正常配送",
-              total:3,
+              total:2,
               mag:{
                   title:"返回"
               },
@@ -158,6 +157,7 @@
 
         },
         created(){
+
            ant.setTitle({
                title:"选择快递"
            })
